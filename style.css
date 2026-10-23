@@ -179,6 +179,11 @@ h2 {
   min-height: calc(100vh - 120px);
 }
 
+.lesson-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .word-list {
   display: flex;
   flex-direction: column;

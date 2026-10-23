@@ -209,6 +209,15 @@ function openLetterVowels() {
   resetButton.hidden = true;
 }
 
+function shuffledWordLines(lines) {
+  const words = lines.flat();
+  for (let index = words.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [words[index], words[swapIndex]] = [words[swapIndex], words[index]];
+  }
+  return lines.map((line, index) => words.slice(index * 5, index * 5 + line.length));
+}
+
 function openSyllables() {
   const wordLines = [
     [
@@ -239,7 +248,7 @@ function openSyllables() {
   ];
 
   syllableList.innerHTML = '';
-  wordLines.forEach((words, lineIndex) => {
+  shuffledWordLines(wordLines).forEach((words, lineIndex) => {
     const line = document.createElement('div');
     line.className = 'word-line';
     const number = document.createElement('span');
@@ -304,7 +313,7 @@ function openTwoSyllables() {
   ];
 
   twoSyllableList.innerHTML = '';
-  wordLines.forEach((words, lineIndex) => {
+  shuffledWordLines(wordLines).forEach((words, lineIndex) => {
     const line = document.createElement('div');
     line.className = 'word-line';
     const number = document.createElement('span');
@@ -485,6 +494,8 @@ vowelsOption.addEventListener('click', openVowels);
 lettersOption.addEventListener('click', openLetters);
 letterVowelOption.addEventListener('click', openLetterVowels);
 newLetterVowelsButton.addEventListener('click', openLetterVowels);
+document.getElementById('newSyllablesButton').addEventListener('click', openSyllables);
+document.getElementById('newTwoSyllablesButton').addEventListener('click', openTwoSyllables);
 syllableOption.addEventListener('click', openSyllables);
 twoSyllableOption.addEventListener('click', openTwoSyllables);
 
