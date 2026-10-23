@@ -13,6 +13,7 @@ const letterCloud = document.getElementById('letterCloud');
 const letterVowelOption = document.getElementById('letterVowelOption');
 const letterVowelView = document.getElementById('letterVowelView');
 const letterVowelList = document.getElementById('letterVowelList');
+const newLetterVowelsButton = document.getElementById('newLetterVowelsButton');
 const syllableOption = document.getElementById('syllableOption');
 const syllableView = document.getElementById('syllableView');
 const syllableList = document.getElementById('syllableList');
@@ -164,13 +165,15 @@ function openLetters() {
 }
 
 function openLetterVowels() {
-  const lines = [
-    ['בַּ', 'גָּ', 'דֶּ', 'הֵ', 'וֹ', 'זִ'],
-    ['חֻ', 'טַ', 'יָ', 'כֶּ', 'לֵ', 'מִ'],
-    ['נֹ', 'סֻ', 'עַ', 'פֵּ', 'צִ', 'קָ'],
-    ['רֶ', 'שָׁ', 'תֻּ', 'בֹּ', 'גֵּ', 'דִּ'],
-    ['הֲ', 'וְ', 'זֶ', 'חָ', 'טֹ', 'יִ']
-  ];
+  const consonants = ['א', 'בּ', 'ב', 'ג', 'ד', 'ה', 'ז', 'ח', 'ט', 'י', 'כּ', 'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פּ', 'פ', 'צ', 'ק', 'ר', 'שׁ', 'שׂ', 'ת'];
+  const vowels = ['\u05B4', '\u05B5', '\u05B6', '\u05B7', '\u05B8', '\u05B9', '\u05BB'];
+  const lines = Array.from({ length: 10 }, () =>
+    Array.from({ length: 6 }, () => {
+      const consonant = consonants[Math.floor(Math.random() * consonants.length)];
+      const vowel = vowels[Math.floor(Math.random() * vowels.length)];
+      return `${consonant}${vowel}`.normalize('NFC');
+    })
+  );
 
   letterVowelList.innerHTML = '';
   lines.forEach((letters, lineIndex) => {
@@ -481,6 +484,7 @@ resetButton.addEventListener('click', resetBoard);
 vowelsOption.addEventListener('click', openVowels);
 lettersOption.addEventListener('click', openLetters);
 letterVowelOption.addEventListener('click', openLetterVowels);
+newLetterVowelsButton.addEventListener('click', openLetterVowels);
 syllableOption.addEventListener('click', openSyllables);
 twoSyllableOption.addEventListener('click', openTwoSyllables);
 
