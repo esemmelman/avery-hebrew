@@ -291,6 +291,15 @@ h2 {
   text-align: center;
 }
 
+#hebrewPool .vowel-card {
+  min-height: 110px;
+}
+
+#hebrewPool .vowel-symbol {
+  width: 112px;
+  font-size: clamp(5.25rem, 7.5vw, 6.75rem);
+}
+
 .dropzone .vowel-card {
   min-height: 66px;
   padding: 0;
